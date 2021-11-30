@@ -25,6 +25,7 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   bool _isAlertVisible = false;
+  bool _isWhosThereVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +50,37 @@ class _GamePageState extends State<GamePage> {
                 style: TextStyle(color: Colors.blue),
               ),
             ),
+            TextButton(
+              onPressed: () {
+                _whoIsThereMethod(context);
+              },
+              child: const Text('Knock Knock'),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  void _whoIsThereMethod(BuildContext context) {
+    _isWhosThereVisible = true;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Who's there?"),
+          content: const Text("Aea mano"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _isWhosThereVisible = false;
+              },
+              child: const Text("GAAAAAA")
+            )
+          ],
+        );
+      },
     );
   }
 
